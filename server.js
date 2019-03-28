@@ -14,6 +14,16 @@ mongoose.connect(`mongodb://${process.env.DB_USER}:${process.env.DB_PWD}@${proce
   console.log('Connect faileddddd: ' + err);
 });
 
+app.enable('trust proxy');
+
+app.use ((req, res, next) => {
+  if (req.secure) {
+    next();
+  } else {
+    res.redirect('https://' + req.headers.host + req.url);
+  }
+});
+
 app.get('/', (req, res) => {
   res.send("YAYYYYYA")
 });
