@@ -32,9 +32,12 @@ app.get('/all', router);
 
 app.post('/upload', router);
 
-
 app.get('/path1/:param1', function(req, res) {
   console.log(req.params.param1);
 
   res.send(req.params.param1);
 });
+
+app.delete('/delete/:id', router);
+
+app.put('/update/name/:name', router);

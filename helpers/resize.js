@@ -15,7 +15,7 @@ class Resize {
     })
         .toFile(this.filepath(newName.small))
         .then(() => {
-      callback(newName.small);
+      callback(this.filepath(newName.original), this.filepath(newName.small));
     })
         .catch((error) => {
       console.log(`Resize error: ${error}`);
@@ -24,8 +24,7 @@ class Resize {
   }
 
   static rename(filename){
-    //const filename = uuidv4();
-    var newName = { small: `${filename}_s.png`, medium: `${filename}_m.png`, original: `${filename}.png`};
+    var newName = { small: `s_${filename}`, medium: `m_${filename}`, original: filename};
 
     return newName;
   }
