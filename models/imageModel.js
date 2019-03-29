@@ -10,5 +10,4 @@ const imageSchema = new Schema({
   original: String
 });
 
-
 module.exports = imageSchema;
