@@ -1,13 +1,12 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const imageSchema = new Schema({
+const fileSchema = new Schema({
   name: String,
-  lat: Number,
-  lon: Number,
+  time: Number,
   description: String,
   thumbnail: String,
   original: String
 });
 
-module.exports = imageSchema;
+module.exports = fileSchema;

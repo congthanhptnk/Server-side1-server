@@ -1,5 +1,5 @@
-const imageSchema = require('../models/image');
+const fileSchema = require('../models/fileModel');
 const mongoose = require('mongoose');
-const Image = mongoose.model('Image', imageSchema);
+const FileModel = mongoose.model('FileModel', fileSchema);
 
-module.exports = { Image };
+module.exports = { FileModel };

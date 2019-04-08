@@ -1,7 +1,7 @@
-const Image = require('./database').Image;
+const FileModel = require('./database').FileModel;
 
 exports.getAll = (req, res) => {
-  Image.find().then(all => {
+  FileModel.find().then(all => {
     res.send(all);
   }).catch((err) => {
     res.status((401).json({error: err}));
@@ -10,10 +10,10 @@ exports.getAll = (req, res) => {
 };
 
 exports.getSingle = (req, res) => {
-  const imageId = req.params.imageId;
+  const fileId = req.params.fileId;
 
-  Image.findById({'_imageId': imageId}).then((image) => {
-    res.send(image);
+  FileModel.findById({'_fileId': fileId}).then((file) => {
+    res.send(file);
   }).catch((err) => {
     res.status((401).json({error: err}));
     res.send("failed get single");
@@ -21,7 +21,7 @@ exports.getSingle = (req, res) => {
 };
 
 exports.deleteAll = (req, res) => {
-  Image.deleteMany({}).then(() => {
+  FileModel.deleteMany({}).then(() => {
     res.send("Delete all")
   }).catch((err) => {
     res.status((401).json({error: err}));
@@ -30,12 +30,17 @@ exports.deleteAll = (req, res) => {
 };
 
 exports.deleteSingle = (req, res) => {
-  const imageId = req.params.imageId;
+  const fileId = req.params.fileId;
 
-  Image.deleteOne({'_imageId': imageId}).then(() => {
+  FileModel.deleteOne({'_fileId': fileId}).then(() => {
     res.send("DELETE SINGLE")
   }).catch(err => {
     res.status((401).json({error: err}));
     res.send("failed delete single");
   })
+};
+
+exports.updateDesc = (req, res) => {
+  res.send(req.body.updateField);
+  console.log(req.body);
 };

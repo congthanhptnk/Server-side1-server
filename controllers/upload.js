@@ -1,15 +1,15 @@
 const resize = require('../helpers/resize');
-const Image = require('./database').Image;
+const FileModel = require('./database').FileModel;
 
-exports.uploadImage = (req, res) => {
+exports.uploadFile = (req, res) => {
+  console.log(req.body);
   if(req.file){
     const resizedImg = new resize('public');
 
     resizedImg.save(req.file.path, req.file.filename, (originalPath, smallPath) =>{
-      Image.create({
+      FileModel.create({
         name: req.body.name,
-        lat: req.body.lat,
-        lon: req.body.lon,
+        time: req.body.time,
         description: req.body.description,
         thumbnail: smallPath,
         original: originalPath
