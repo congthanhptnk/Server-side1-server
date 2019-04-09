@@ -1,5 +1,6 @@
 const fileSystem = require('../helpers/fileSystem');
 const fs = require('fs');
+const path = require('path');
 
 exports.createFolder = (req, res) => {
   const folder = req.body.folderPath;
@@ -13,6 +14,14 @@ exports.createFolder = (req, res) => {
       })
     }
   })
+};
+
+exports.deleteFolder = (req, res) => {
+  const folder = req.body.folderPath;
+
+  fileSystem.deleteFolder(folder);
+
+  res.send("Folder deleted");
 };
 
 

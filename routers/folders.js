@@ -6,8 +6,8 @@ const controller = require('../controllers/folders');
 const bodyParser = require('body-parser');
 const urlencodedParser = bodyParser.urlencoded({extended: true});
 
-router.post('/create', urlencodedParser, controller.createFolder);
-//router.delete('/', controller.deleteFolder);
+router.post('/', urlencodedParser, controller.createFolder);
+router.delete('/', urlencodedParser, controller.deleteFolder);
 //router.put('/rename', controller.renameFolder);
 
 module.exports = router;

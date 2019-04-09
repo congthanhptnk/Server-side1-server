@@ -1,4 +1,5 @@
 const fs = require('fs');
+const path = require('path');
 
 exports.checkFolder = (folder, existed) => {
   fs.stat(folder, (err) => {
@@ -8,4 +9,21 @@ exports.checkFolder = (folder, existed) => {
       existed(true);
     }
   })
+};
+
+//Delete folder synchronously
+exports.deleteFolder = (folder) => {
+  if(fs.existsSync(folder)) {
+    fs.readdirSync(folder).forEach((item, index) => {
+      var itemPath = path.join(folder, item);
+
+      if(fs.lstatSync(itemPath).isDirectory()) {
+        this.deleteFolder(itemPath);
+      } else {
+        fs.unlinkSync(itemPath);
+      }
+    });
+
+    fs.rmdirSync(folder);
+  }
 };
