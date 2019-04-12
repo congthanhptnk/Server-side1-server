@@ -4,8 +4,7 @@ exports.getAll = (req, res) => {
   FileModel.find().then(all => {
     res.send(all);
   }).catch((err) => {
-    res.status(401);
-    res.send("failed to get all: ", err);
+    res.status(401).send("failed to get all: " + err);
   })
 };
 
@@ -16,8 +15,7 @@ exports.getSingle = (req, res) => {
     console.log(file);
     res.send(file);
   }).catch((err) => {
-    res.status(401);
-    res.send("failed to findById: ", err);
+    res.status(401).send("failed to findById: " + err);
   })
 };
 
@@ -25,8 +23,7 @@ exports.deleteAll = (req, res) => {
   FileModel.deleteMany({}).then(() => {
     res.send("Delete all")
   }).catch((err) => {
-    res.status(401);
-    res.send("failed delete all: ", err);
+    res.status(401).send("failed delete all: " + err);
   })
 };
 
@@ -36,8 +33,7 @@ exports.deleteSingle = (req, res) => {
   FileModel.deleteOne({'_fileId': fileId}).then(() => {
     res.send("DELETE SINGLE")
   }).catch(err => {
-    res.status(401);
-    res.send("failed delete single: ", err);
+    res.status(401).send("failed delete single: " + err);
   })
 };
 
@@ -53,7 +49,6 @@ exports.getByFolder = (req, res) => {
   FileModel.find({ 'location': folder }).then(all => {
     res.send(all);
   }).catch((err) => {
-    res.status(401);
-    res.send("failed get by folder: ", err);
+    res.status(401).send("failed get by folder: " + err);
   })
 };
