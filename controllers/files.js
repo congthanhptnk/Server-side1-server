@@ -4,19 +4,20 @@ exports.getAll = (req, res) => {
   FileModel.find().then(all => {
     res.send(all);
   }).catch((err) => {
-    res.status((401).json({error: err}));
-    res.send("failed get all");
+    res.status(401);
+    res.send("failed to get all: ", err);
   })
 };
 
 exports.getSingle = (req, res) => {
   const fileId = req.params.fileId;
 
-  FileModel.findById({'_fileId': fileId}).then((file) => {
+  FileModel.findById({'_id': fileId}).then((file) => {
+    console.log(file);
     res.send(file);
   }).catch((err) => {
-    res.status((401).json({error: err}));
-    res.send("failed get single");
+    res.status(401);
+    res.send("failed to findById: ", err);
   })
 };
 
@@ -24,8 +25,8 @@ exports.deleteAll = (req, res) => {
   FileModel.deleteMany({}).then(() => {
     res.send("Delete all")
   }).catch((err) => {
-    res.status((401).json({error: err}));
-    res.send("failed delete all");
+    res.status(401);
+    res.send("failed delete all: ", err);
   })
 };
 
@@ -35,12 +36,24 @@ exports.deleteSingle = (req, res) => {
   FileModel.deleteOne({'_fileId': fileId}).then(() => {
     res.send("DELETE SINGLE")
   }).catch(err => {
-    res.status((401).json({error: err}));
-    res.send("failed delete single");
+    res.status(401);
+    res.send("failed delete single: ", err);
   })
 };
 
 exports.updateDesc = (req, res) => {
   res.send(req.body.updateField);
   console.log(req.body);
+};
+
+exports.getByFolder = (req, res) => {
+  console.log("YEEEETE");
+  const folder = req.body.location;
+
+  FileModel.find({ 'location': folder }).then(all => {
+    res.send(all);
+  }).catch((err) => {
+    res.status(401);
+    res.send("failed get by folder: ", err);
+  })
 };

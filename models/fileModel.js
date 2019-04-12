@@ -4,8 +4,8 @@ const Schema = mongoose.Schema;
 const fileSchema = new Schema({
   name: String,
   time: Number,
-  description: String,
-  thumbnail: String,
+  type: String,
+  location: String,
   original: String
 });
 

@@ -7,9 +7,10 @@ const bodyParser = require('body-parser');
 const urlencodedParser = bodyParser.urlencoded({extended: true});
 
 router.get('/', controller.getAll);
-router.get('/:fileId', controller.getSingle);
+router.get('/fileId/:fileId', controller.getSingle);
+router.get('/folder', urlencodedParser, controller.getByFolder);
 router.delete('/', controller.deleteAll);
 router.delete('/:fileId', controller.deleteSingle);
-router.put('/:fileId', urlencodedParser, controller.updateDesc);
+router.patch('/:fileId', urlencodedParser, controller.updateDesc);
 
 module.exports = router;

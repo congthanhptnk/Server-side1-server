@@ -11,10 +11,10 @@ exports.checkFolder = (folder, existed) => {
   })
 };
 
-//Delete folder synchronously
+//Delete folder and its content synchronously
 exports.deleteFolder = (folder) => {
   if(fs.existsSync(folder)) {
-    fs.readdirSync(folder).forEach((item, index) => {
+    fs.readdirSync(folder).forEach((item) => {
       var itemPath = path.join(folder, item);
 
       if(fs.lstatSync(itemPath).isDirectory()) {
