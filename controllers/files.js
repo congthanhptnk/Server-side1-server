@@ -1,4 +1,5 @@
 const FileModel = require('./database').FileModel;
+const fileSystem = require('../helpers/fileSystem');
 
 exports.getAll = (req, res) => {
   FileModel.find().then(all => {
@@ -11,7 +12,7 @@ exports.getAll = (req, res) => {
 exports.getSingle = (req, res) => {
   const fileId = req.params.fileId;
 
-  FileModel.findById({'_id': fileId}).then((file) => {
+  FileModel.findById(fileId).then((file) => {
     console.log(file);
     res.send(file);
   }).catch((err) => {
@@ -21,6 +22,7 @@ exports.getSingle = (req, res) => {
 
 exports.deleteAll = (req, res) => {
   FileModel.deleteMany({}).then(() => {
+    fileSystem.deleteFolder("./public");
     res.send("Delete all")
   }).catch((err) => {
     res.status(401).send("failed delete all: " + err);
@@ -30,11 +32,12 @@ exports.deleteAll = (req, res) => {
 exports.deleteSingle = (req, res) => {
   const fileId = req.params.fileId;
 
-  FileModel.deleteOne({'_fileId': fileId}).then(() => {
-    res.send("DELETE SINGLE")
-  }).catch(err => {
-    res.status(401).send("failed delete single: " + err);
-  })
+  FileModel.findByIdAndDelete(fileId).then((file) => {
+    fileSystem.deleteFile(file.original);
+    res.sendStatus(200);
+  }).catch((err) => {
+    res.status(401).send("failed to delete single: " + err);
+  });
 };
 
 exports.updateDesc = (req, res) => {

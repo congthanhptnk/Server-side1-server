@@ -24,6 +24,12 @@ exports.deleteFolder = (folder) => {
       }
     });
 
-    fs.rmdirSync(folder);
+    if(folder !== './public'){
+      fs.rmdirSync(folder);
+    }
   }
+};
+
+exports.deleteFile = (filePath) => {
+  fs.unlinkSync(filePath);
 };

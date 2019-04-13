@@ -9,7 +9,7 @@ class FileMover {
     this.newDir = newDir;
   }
 
-  save(filename, isSuccess){
+  save(filename, result){
     var oldPath = path.resolve(`${this.oldDir}/${filename}`);
     var newpath = path.resolve(`${this.newDir}/${filename}`);
 
@@ -20,11 +20,11 @@ class FileMover {
           else {
             console.log("repath complete");
 
-            isSuccess(true);
+            result(true, newpath);
           };
         })
       } else {
-        isSuccess(false);
+        result(false, oldPath);
       }
     })
   }

@@ -5,21 +5,24 @@ exports.uploadFile = (req, res) => {
   if(req.file){
     const fileMover = new FileMover('public', req.body.location);
 
-    fileMover.save(req.file.filename, (result) => {
-
-      if(result){
+    fileMover.save(req.file.filename, (isSuccess, curPath) => {
+      if(isSuccess){
         FileModel.create({
           name: req.body.name,
           time: req.body.time,
           type: req.body.type,
           location: req.body.location,
-          original: req.file.path
+          original: curPath
         }).then((result) => {
           res.status(200).send("Success: " + result);
         }).catch((err) => {
-          res.status(401).send("Folder already existed: " + err);
+          res.status(401).send("Failed to create: " + err);
         });
+
+      } else {
+        res.status(401).send("Folder does not exist");
       }
+
     });
   } else {
     res.status(401).send("Failed upload: File empty");

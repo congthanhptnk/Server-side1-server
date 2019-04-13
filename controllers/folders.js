@@ -9,16 +9,20 @@ exports.createFolder = (req, res) => {
     if(existed){
       res.send("Folder already existed");
     } else {
-      fs.mkdir(folder, () => {
-        FileModel.create({
-          name: req.body.name,
-          time: req.body.time,
-          type: req.body.type,
-          location: req.body.location,
-          original: folder
-        });
+      fs.mkdir(folder, (err) => {
+        if(err){
+          res.sendStatus(401);
+        } else {
+          FileModel.create({
+            name: req.body.name,
+            time: req.body.time,
+            type: req.body.type,
+            location: req.body.location,
+            original: folder
+          });
 
-        res.send("Folder created");
+          res.send("Folder created");
+        }
       })
     }
   })
