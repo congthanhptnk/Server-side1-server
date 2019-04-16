@@ -4,6 +4,7 @@ const FileModel = require('./database').FileModel;
 
 exports.createFolder = (req, res) => {
   const folder = req.body.folderPath;
+  console.log(folder)
 
   fileSystem.checkFolder(folder, (existed) => {
     if(existed){

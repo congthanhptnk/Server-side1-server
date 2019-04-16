@@ -8,7 +8,7 @@ const urlencodedParser = bodyParser.urlencoded({extended: true});
 
 router.get('/', controller.getAll);
 router.get('/fileId/:fileId', controller.getSingle);
-router.post('/hoho', urlencodedParser, controller.getByFolder);
+router.post('/folder', urlencodedParser, controller.getByFolder);
 router.delete('/', controller.deleteAll);
 router.delete('/:fileId', controller.deleteSingle);
 router.patch('/:fileId', urlencodedParser, controller.updateDesc);
