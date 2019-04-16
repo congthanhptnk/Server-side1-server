@@ -41,14 +41,13 @@ exports.deleteSingle = (req, res) => {
 };
 
 exports.updateDesc = (req, res) => {
-  res.send(req.body.updateField);
-  console.log(req.body);
+  console.log(req.body.location + "something not right");
+  res.send(req.body.location);
 };
 
 exports.getByFolder = (req, res) => {
-  console.log("YEEEETE");
+  console.log(req.body.location + "YEEEETE");
   const folder = req.body.location;
-
   FileModel.find({ 'location': folder }).then(all => {
     res.send(all);
   }).catch((err) => {

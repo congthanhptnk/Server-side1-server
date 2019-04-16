@@ -2,7 +2,9 @@ const FileMover = require('../helpers/fileMover');
 const FileModel = require('./database').FileModel;
 
 exports.uploadFile = (req, res) => {
+  //console.log(req.body);
   if(req.file){
+    console.log("something is wrong");
     const fileMover = new FileMover('public', req.body.location);
 
     fileMover.save(req.file.filename, (isSuccess, curPath) => {
