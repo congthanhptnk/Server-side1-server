@@ -12,7 +12,7 @@ exports.checkFolder = (folder, existed) => {
 };
 
 //Delete folder and its content synchronously
-exports.deleteFolder = (folder) => {
+exports.deleteFolder = (folder, error) => {
   if(fs.existsSync(folder)) {
     fs.readdirSync(folder).forEach((item) => {
       var itemPath = path.join(folder, item);
@@ -27,6 +27,8 @@ exports.deleteFolder = (folder) => {
     if(folder !== './public'){
       fs.rmdirSync(folder);
     }
+  } else {
+    error("Folder does not exist")
   }
 };
 
