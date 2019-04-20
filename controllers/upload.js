@@ -15,7 +15,7 @@ exports.uploadFile = (req, res) => {
           location: req.body.location,
           original: curPath
         }).then((result) => {
-          res.status(200).send("Success: " + result);
+          res.status(200).send(result);
         }).catch((err) => {
           res.status(401).send("Failed to create: " + err);
         });
