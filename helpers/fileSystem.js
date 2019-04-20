@@ -1,5 +1,7 @@
 const fs = require('fs');
 const path = require('path');
+const deleteByLocation = require('../controllers/database').deleteByLocation;
+const deleteFile = require('../controllers/database').deleteFile;
 
 exports.checkFolder = (folder, existed) => {
   fs.stat(folder, (err) => {
@@ -13,6 +15,7 @@ exports.checkFolder = (folder, existed) => {
 
 //Delete folder and its content synchronously
 exports.deleteFolder = (folder, error) => {
+  console.log(folder);
   if(fs.existsSync(folder)) {
     fs.readdirSync(folder).forEach((item) => {
       var itemPath = path.join(folder, item);
@@ -26,6 +29,9 @@ exports.deleteFolder = (folder, error) => {
 
     if(folder !== './public'){
       fs.rmdirSync(folder);
+      console.log(folder);
+      deleteByLocation(folder);
+      deleteFile(folder);
     }
   } else {
     error("Folder does not exist")

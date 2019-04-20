@@ -1,4 +1,5 @@
 const FileModel = require('./database').FileModel;
+const findByLocation = require('./database').findByLocation;
 const fileSystem = require('../helpers/fileSystem');
 
 exports.getAll = (req, res) => {
@@ -48,9 +49,12 @@ exports.updateDesc = (req, res) => {
 exports.getByFolder = (req, res) => {
   console.log(req.body.location + "YEEEETE");
   const folder = req.body.location;
-  FileModel.find({ 'location': folder }).then(all => {
-    res.send(all);
-  }).catch((err) => {
-    res.status(401).send("failed get by folder: " + err);
+
+  findByLocation(folder, (result, err) => {
+    if(!err) {
+      res.send(result);
+    } else {
+      res.status(401).send("failed get by folder: " + err);
+    }
   })
 };

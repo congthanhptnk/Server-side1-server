@@ -3,8 +3,9 @@ const fs = require('fs');
 const FileModel = require('./database').FileModel;
 
 exports.createFolder = (req, res) => {
-  const folder = req.body.folderPath;
-  console.log(folder)
+  const location = req.body.location;
+  const name = req.body.name;
+  const folder = `${location}/${name}`;
 
   fileSystem.checkFolder(folder, (existed) => {
     if(existed){
@@ -15,10 +16,10 @@ exports.createFolder = (req, res) => {
           res.sendStatus(401);
         } else {
           FileModel.create({
-            name: req.body.name,
+            name: name,
             time: req.body.time,
             type: req.body.type,
-            location: req.body.location,
+            location: location,
             original: folder
           });
 
@@ -30,7 +31,7 @@ exports.createFolder = (req, res) => {
 };
 
 exports.deleteFolder = (req, res) => {
-  const folder = req.body.folderPath;
+  const folder = req.body.location;
 
   fileSystem.deleteFolder(folder);
 

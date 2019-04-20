@@ -10,17 +10,17 @@ class FileMover {
   }
 
   save(filename, result){
-    var oldPath = path.resolve(`${this.oldDir}/${filename}`);
-    var newpath = path.resolve(`${this.newDir}/${filename}`);
+    //var oldPath = path.resolve(`${this.oldDir}/${filename}`);
+    //var newpath = path.resolve(`${this.newDir}/${filename}`);
+    var oldPath = path.join(this.oldDir, filename);
+    var newPath = path.join(this.newDir, filename);
 
     FileSystem.checkFolder(this.newDir, (existed) => {
       if(existed){
-        fs.rename(oldPath, newpath, (err) => {
+        fs.rename(oldPath, newPath, (err) => {
           if(err) { console.log("repath error: ", err) }
           else {
-            console.log("repath complete");
-
-            result(true, newpath);
+            result(true, newPath);
           };
         })
       } else {
