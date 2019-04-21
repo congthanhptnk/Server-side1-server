@@ -33,9 +33,15 @@ exports.createFolder = (req, res) => {
 exports.deleteFolder = (req, res) => {
   const folder = req.body.location;
 
-  fileSystem.deleteFolder(folder);
+  fileSystem.deleteFolder(folder, (error) => {
+    if(error) {
+      res.status(400).send("Folder delete failed");
+    } else {
+      res.status(200).send("Folder deleted");
+    }
+  });
 
-  res.send("Folder deleted");
+
 };
 
 
