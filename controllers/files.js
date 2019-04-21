@@ -5,7 +5,7 @@ const FileMover = require('../helpers/fileMover');
 
 exports.getAll = (req, res) => {
   FileModel.find().then(all => {
-    res.send(all);
+    res.status(200).send(all);
   }).catch((err) => {
     res.status(401).send("failed to get all: " + err);
   })
@@ -15,8 +15,7 @@ exports.getSingle = (req, res) => {
   const fileId = req.params.fileId;
 
   FileModel.findById(fileId).then((file) => {
-    console.log(file);
-    res.send(file);
+    res.status(200).send(file);
   }).catch((err) => {
     res.status(401).send("failed to findById: " + err);
   })
@@ -25,7 +24,7 @@ exports.getSingle = (req, res) => {
 exports.deleteAll = (req, res) => {
   FileModel.deleteMany({}).then(() => {
     fileSystem.deleteFolder("./public");
-    res.send("Delete all")
+    res.status(200).send("Delete all")
   }).catch((err) => {
     res.status(401).send("failed delete all: " + err);
   })
@@ -48,12 +47,11 @@ exports.updateDesc = (req, res) => {
 };
 
 exports.getByFolder = (req, res) => {
-  console.log(req.body.location + "YEEEETE");
   const folder = req.body.location;
 
   findByLocation(folder, (result, err) => {
     if(!err) {
-      res.send(result);
+      res.status(200).send(result);
     } else {
       res.status(401).send("failed get by folder: " + err);
     }
