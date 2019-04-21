@@ -8,9 +8,14 @@ const urlencodedParser = bodyParser.urlencoded({extended: true});
 
 router.get('/', controller.getAll);
 router.get('/fileId/:fileId', controller.getSingle);
+
 router.post('/folder', urlencodedParser, controller.getByFolder);
+router.post('/copy', urlencodedParser, controller.copyFile);
+router.post('/move', urlencodedParser, controller.moveFile);
+
 router.delete('/', controller.deleteAll);
 router.delete('/:fileId', controller.deleteSingle);
+
 router.patch('/:fileId', urlencodedParser, controller.updateDesc);
 
 module.exports = router;

@@ -1,6 +1,7 @@
 const FileModel = require('./database').FileModel;
 const findByLocation = require('./database').findByLocation;
 const fileSystem = require('../helpers/fileSystem');
+const FileMover = require('../helpers/fileMover');
 
 exports.getAll = (req, res) => {
   FileModel.find().then(all => {
@@ -58,3 +59,29 @@ exports.getByFolder = (req, res) => {
     }
   })
 };
+
+exports.copyFile = (req, res) => {
+  const fileMover = new FileMover(req.body.location1, req.body.location2);
+  const filename = req.body.filename;
+
+  fileMover.copy(filename, (isSuccess, newFile) => {
+    if(isSuccess) {
+      res.status(200).send(newFile);
+    } else {
+      res.status(400).send("Failed to copy file");
+    }
+  })
+};
+
+exports.moveFile = (req, res) => {
+  const fileMover = new FileMover(req.body.location1, req.body.location2);
+  const filename = req.body.filename;
+
+  fileMover.save(filename, (isSuccess, newPath) => {
+    if(isSuccess){
+      res.status(200).send(newPath);
+    } else {
+      res.status(400).send("Failed to move files")
+    }
+  })
+}
