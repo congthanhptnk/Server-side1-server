@@ -6,13 +6,12 @@ exports.uploadFile = (req, res) => {
     const fileMover = new FileMover('public', req.body.location);
     //console.log(req.file.filename);
 
-
     fileMover.save(req.file.filename, (isSuccess, curPath) => {
       if(isSuccess){
         FileModel.create({
           name: req.body.name,
           time: req.body.time,
-          type: getFileType(req.file.filename),
+          type: req.body.type,
           location: req.body.location,
           original: curPath
         }).then((result) => {
@@ -31,6 +30,8 @@ exports.uploadFile = (req, res) => {
   }
 };
 
+
+//For non-iOS use
 const getFileType = (filename) => {
   const splitString = filename.split(".");
   let fileType = "folder";

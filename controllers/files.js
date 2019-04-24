@@ -1,5 +1,6 @@
 const FileModel = require('./database').FileModel;
 const findByLocation = require('./database').findByLocation;
+const updateLocation = require('./database').updateLocation;
 const fileSystem = require('../helpers/fileSystem');
 const FileMover = require('../helpers/fileMover');
 
@@ -59,8 +60,8 @@ exports.getByFolder = (req, res) => {
 };
 
 exports.copyFile = (req, res) => {
-  const fileMover = new FileMover(req.body.location1, req.body.location2);
-  const filename = req.body.filename;
+  let filename = getFileName(req.body.original);
+  const fileMover = new FileMover(req.body.oldLoc, req.body.newLoc);
 
   fileMover.copy(filename, (isSuccess, newFile) => {
     if(isSuccess) {
@@ -72,14 +73,30 @@ exports.copyFile = (req, res) => {
 };
 
 exports.moveFile = (req, res) => {
-  const fileMover = new FileMover(req.body.location1, req.body.location2);
-  const filename = req.body.filename;
+  let filename = getFileName(req.body.original);
+  const fileMover = new FileMover(req.body.oldLoc, req.body.newLoc);
 
   fileMover.save(filename, (isSuccess, newPath) => {
     if(isSuccess){
-      res.status(200).send(newPath);
+      updateLocation(req.body.original, newPath, req.body.newLoc, (isSuccess) => {
+        if(isSuccess){
+          res.status(200).send(newPath);
+        } else {
+          res.status(400).send("Failed to change database entry")
+        }
+      });
     } else {
       res.status(400).send("Failed to move files")
     }
   })
+}
+
+const getFileName = (original) => {
+  const splitString = original.split("/");
+  let filename = "";
+  
+  if(splitString.length !== 0){
+    filename = splitString[splitString.length - 1]
+  }
+  return filename
 }
