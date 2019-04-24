@@ -31,6 +31,6 @@ const updateLocation = (oldPath, newPath, newLoc, isSuccess) => {
     console.log("error update: " + err)
     isSuccess(false)
   })
-}
+};
 
 module.exports = { FileModel, findByLocation, deleteByLocation, deleteFile, updateLocation };
