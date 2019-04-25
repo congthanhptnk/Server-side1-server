@@ -121,15 +121,7 @@ Delete requested file
 
 **Example response**
 
-    { 
-	    "_id": "5cbb8abaf054f3fcd62ec32a", 
-	    "name": "name1", 
-		"time": 1230, 
-		"type": "png", 
-		"location": "./public/easy", 
-		"original": "public/easy/1555794618483-1555787056561-test.png", 
-		"__v": 0 
-	}
+   Deleted
 
 ### Get single file - GET
 
