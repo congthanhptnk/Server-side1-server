@@ -25,7 +25,7 @@ A back-end project written in **Node.js, Express.js, Javascript**. The server is
 
 ### Upload - POST
 
-    http://localhost:3000/upload
+    https://node85145-sssf-labs.jelastic.metropolia.fi/upload
    
 Upload a file of any type.
  *Multipart/Form-data*
@@ -54,7 +54,7 @@ Upload a file of any type.
 
 ### Get all files and folders - GET
 
-    http://localhost:3000/files
+    https://node85145-sssf-labs.jelastic.metropolia.fi/files
 
 Return all files and folders
 
@@ -95,7 +95,7 @@ None
 
 ### Delete all files and folders - DELETE
 
-    http://localhost:3000/files
+    https://node85145-sssf-labs.jelastic.metropolia.fi/files
    
 Delete every files and folders
 
@@ -109,7 +109,7 @@ None
 
 ### Delete single file - DELETE
 
-    http://localhost:3000/files/{fileId}
+    https://node85145-sssf-labs.jelastic.metropolia.fi/files/{fileId}
 
 Delete requested file
 
@@ -125,7 +125,7 @@ Delete requested file
 
 ### Get single file - GET
 
-    http://localhost:3000/files/fileId/{fileId}
+    https://node85145-sssf-labs.jelastic.metropolia.fi/files/fileId/{fileId}
    
 Return requested file
 
@@ -149,7 +149,7 @@ Return requested file
 
 ### Get contents of a folder - POST
 
-    http://localhost:3000/files/folder
+    https://node85145-sssf-labs.jelastic.metropolia.fi/files/folder
    
 Get all files and folders belong to requested folder
  *x-www-urlencoded*
@@ -185,7 +185,7 @@ Get all files and folders belong to requested folder
 
 ### Move file - POST
 
-    http://localhost:3000/files/move
+    https://node85145-sssf-labs.jelastic.metropolia.fi/files/move
    
 Move a file to requested location
  *x-www-urlencoded*
@@ -205,7 +205,7 @@ Move a file to requested location
 
 ### Create new folder - POST
 
-    http://localhost:3000/folders
+    https://node85145-sssf-labs.jelastic.metropolia.fi/folders
    
 Create a new folder at the requested location
  *x-www-urlencoded*
@@ -224,7 +224,7 @@ Create a new folder at the requested location
 
 ### Delete folder - DELETE
 
-    http://localhost:3000/folders
+    https://node85145-sssf-labs.jelastic.metropolia.fi/folders
    
 Delete requested folder and all of its content
  *x-www-urlencoded*
