@@ -125,7 +125,7 @@ Delete requested file
 
 ### Get single file - GET
 
-    http://localhost:3000/files/{fileId}
+    http://localhost:3000/files/fileId/{fileId}
    
 Return requested file
 
