@@ -185,7 +185,7 @@ Get all files and folders belong to requested folder
 
 ### Move file - POST
 
-    http://localhost:3000/move
+    http://localhost:3000/files/move
    
 Move a file to requested location
  *x-www-urlencoded*
