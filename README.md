@@ -23,7 +23,7 @@ A back-end project written in **Node.js, Express.js, Javascript**. The server is
 
 # API
 
-### Upload - GET
+### Upload - POST
 
     http://localhost:3000/upload
    
