@@ -2,13 +2,14 @@ const FileModel = require('./database').FileModel;
 const findByLocation = require('./database').findByLocation;
 const updateLocation = require('./database').updateLocation;
 const fileSystem = require('../helpers/fileSystem');
+const uHelper = require('../helpers/utilityHelper');
 const FileMover = require('../helpers/fileMover');
 
 exports.getAll = (req, res) => {
   FileModel.find().then(all => {
     res.status(200).send(all);
   }).catch((err) => {
-    res.status(401).send("failed to get all: " + err);
+    res.status(400).send("Failed to get all: " + err);
   })
 };
 
@@ -18,7 +19,7 @@ exports.getSingle = (req, res) => {
   FileModel.findById(fileId).then((file) => {
     res.status(200).send(file);
   }).catch((err) => {
-    res.status(401).send("failed to findById: " + err);
+    res.status(400).send("Failed to findById: " + err);
   })
 };
 
@@ -27,40 +28,43 @@ exports.deleteAll = (req, res) => {
     fileSystem.deleteFolder("./public");
     res.status(200).send("Delete all")
   }).catch((err) => {
-    res.status(401).send("failed delete all: " + err);
+    res.status(400).send("Failed delete all: " + err);
   })
 };
 
 exports.deleteSingle = (req, res) => {
   const fileId = req.params.fileId;
-
-  FileModel.findByIdAndDelete(fileId).then((file) => {
-    fileSystem.deleteFile(file.original);
-    res.sendStatus(200);
-  }).catch((err) => {
-    res.status(401).send("failed to delete single: " + err);
-  });
-};
-
-exports.updateDesc = (req, res) => {
-  console.log(req.body.location + "something not right");
-  res.send(req.body.location);
+  if(fileId === null){
+    FileModel.findByIdAndDelete(fileId).then((file) => {
+      fileSystem.deleteFile(file.original);
+      res.sendStatus(200);
+    }).catch((err) => {
+      res.status(400).send("Failed to delete single: " + err);
+    });
+  } else {
+    res.status(400).send("Empty fileID")
+  }
 };
 
 exports.getByFolder = (req, res) => {
   const folder = req.body.location;
 
-  findByLocation(folder, (result, err) => {
-    if(!err) {
-      res.status(200).send(result);
-    } else {
-      res.status(401).send("failed get by folder: " + err);
-    }
-  })
+  if(folder === null){
+    findByLocation(folder, (result, err) => {
+      if(!err) {
+        res.status(200).send(result);
+      } else {
+        res.status(400).send("Failed to get by folder: " + err);
+      }
+    })
+  } else {
+    res.status(400).send("Empty location")
+  }
+
 };
 
 exports.copyFile = (req, res) => {
-  let filename = getFileName(req.body.original);
+  let filename = uHelper.getFileName(req.body.original);
   const fileMover = new FileMover(req.body.oldLoc, req.body.newLoc);
 
   fileMover.copy(filename, (isSuccess, newFile) => {
@@ -73,7 +77,7 @@ exports.copyFile = (req, res) => {
 };
 
 exports.moveFile = (req, res) => {
-  let filename = getFileName(req.body.original);
+  let filename = uHelper.getFileName(req.body.original);
   const fileMover = new FileMover(req.body.oldLoc, req.body.newLoc);
 
   fileMover.save(filename, (isSuccess, newPath) => {
@@ -86,17 +90,7 @@ exports.moveFile = (req, res) => {
         }
       });
     } else {
-      res.status(400).send("Failed to move files")
+      res.status(400).send("File already existed or unable to repath file")
     }
   })
-}
-
-const getFileName = (original) => {
-  const splitString = original.split("/");
-  let filename = "";
-  
-  if(splitString.length !== 0){
-    filename = splitString[splitString.length - 1]
-  }
-  return filename
-}
+};

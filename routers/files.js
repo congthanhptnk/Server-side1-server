@@ -16,6 +16,4 @@ router.post('/move', urlencodedParser, controller.moveFile);
 router.delete('/', controller.deleteAll);
 router.delete('/:fileId', controller.deleteSingle);
 
-router.patch('/:fileId', urlencodedParser, controller.updateDesc);
-
 module.exports = router;

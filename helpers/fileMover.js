@@ -15,7 +15,7 @@ class FileMover {
     FileSystem.checkFolder(this.newDir, (existed) => {
       if(existed){
         fs.rename(oldPath, newPath, (err) => {
-          if(err) { console.log("repath error: ", err) }
+          if(err) { result(false, oldPath) }
           else {
             result(true, newPath);
           };
