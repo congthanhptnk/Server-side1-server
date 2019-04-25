@@ -4,7 +4,6 @@ const FileModel = require('./database').FileModel;
 
 exports.createFolder = (req, res) => {
   const location = req.body.location;
-  console.log(location);
   const name = req.body.name;
   const folder = `${location}/${name}`;
 
@@ -36,7 +35,7 @@ exports.deleteFolder = (req, res) => {
 
   fileSystem.deleteFolder(folder, (error) => {
     if(error) {
-      res.status(400).send("Folder delete failed: ");
+      res.status(400).send("Folder delete failed: " + error);
     } else {
       res.status(200).send("Folder deleted");
     }

@@ -4,7 +4,6 @@ const FileModel = require('./database').FileModel;
 exports.uploadFile = (req, res) => {
   if(req.file){
     const fileMover = new FileMover('public', req.body.location);
-    //console.log(req.file.filename);
 
     fileMover.save(req.file.filename, (isSuccess, curPath) => {
       if(isSuccess){
@@ -39,4 +38,4 @@ const getFileType = (filename) => {
     fileType = splitString[splitString.length - 1]
   }
   return fileType
-}
+};

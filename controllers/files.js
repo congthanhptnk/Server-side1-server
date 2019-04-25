@@ -34,10 +34,11 @@ exports.deleteAll = (req, res) => {
 
 exports.deleteSingle = (req, res) => {
   const fileId = req.params.fileId;
-  if(fileId === null){
+
+  if(fileId !== null){
     FileModel.findByIdAndDelete(fileId).then((file) => {
       fileSystem.deleteFile(file.original);
-      res.sendStatus(200);
+      res.status(200).send("deleted");
     }).catch((err) => {
       res.status(400).send("Failed to delete single: " + err);
     });
@@ -49,7 +50,7 @@ exports.deleteSingle = (req, res) => {
 exports.getByFolder = (req, res) => {
   const folder = req.body.location;
 
-  if(folder === null){
+  if(folder !== null){
     findByLocation(folder, (result, err) => {
       if(!err) {
         res.status(200).send(result);
