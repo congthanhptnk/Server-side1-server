@@ -30,8 +30,8 @@ Upload a file of any type.
  *Multipart/Form-data*
 
 **Parameters**
-|Name|Description|
-|--|--|
+|Name  |Description|
+|------|-----------|
 | file | File intended to upload. Attached to request |
 | name | Display name for the file |
 | time | DateTime |
