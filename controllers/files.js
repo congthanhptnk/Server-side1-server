@@ -9,7 +9,7 @@ exports.getAll = (req, res) => {
   FileModel.find().then(all => {
     res.status(200).send(all);
   }).catch((err) => {
-    res.status(400).send("Failed to get all: " + err);
+    res.status(500).send("Failed to get all: " + err);
   })
 };
 

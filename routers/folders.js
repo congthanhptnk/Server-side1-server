@@ -8,6 +8,5 @@ const urlencodedParser = bodyParser.urlencoded({extended: true});
 
 router.post('/', urlencodedParser, controller.createFolder);
 router.delete('/', urlencodedParser, controller.deleteFolder);
-//router.put('/rename', controller.renameFolder);
 
 module.exports = router;
