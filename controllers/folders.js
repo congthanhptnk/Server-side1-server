@@ -6,6 +6,7 @@ exports.createFolder = (req, res) => {
   const location = req.body.location;
   const name = req.body.name;
   const folder = `${location}/${name}`;
+  const time = req.body.time;
 
   fileSystem.checkFolder(folder, (existed) => {
     if(existed){
@@ -17,7 +18,7 @@ exports.createFolder = (req, res) => {
         } else {
           FileModel.create({
             name: name,
-            time: req.body.time,
+            time: time,
             type: "folder",
             location: location,
             original: folder
