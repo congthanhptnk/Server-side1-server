@@ -18,7 +18,7 @@ exports.createFolder = (req, res) => {
         } else {
           FileModel.create({
             name: name,
-            time: time,
+            time: "111",
             type: "folder",
             location: location,
             original: folder
