@@ -3,9 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="56c96756-7355-4ed9-add0-d27c8ced9934" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/controllers/files.js" afterPath="$PROJECT_DIR$/controllers/files.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/controllers/folders.js" afterPath="$PROJECT_DIR$/controllers/folders.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/controllers/upload.js" afterPath="$PROJECT_DIR$/controllers/upload.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server.js" afterPath="$PROJECT_DIR$/server.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -49,7 +47,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="folders.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="folders.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/routers/folders.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="135">
@@ -59,11 +57,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="fileSystem.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/helpers/fileSystem.js">
+      <file leaf-file-name="server.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/server.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="215">
-              <caret line="31" column="31" lean-forward="false" selection-start-line="31" selection-start-column="31" selection-end-line="31" selection-end-column="31" />
+            <state relative-caret-position="315">
+              <caret line="21" column="24" lean-forward="true" selection-start-line="21" selection-start-column="24" selection-end-line="21" selection-end-column="24" />
               <folding />
             </state>
           </provider>
@@ -144,7 +142,6 @@
         <option value="$PROJECT_DIR$/middlewares/router.js" />
         <option value="$PROJECT_DIR$/controllers/images.js" />
         <option value="$PROJECT_DIR$/routers/images.js" />
-        <option value="$PROJECT_DIR$/server.js" />
         <option value="$PROJECT_DIR$/models/image.js" />
         <option value="$PROJECT_DIR$/routers/upload.js" />
         <option value="$PROJECT_DIR$/routers/index.js" />
@@ -162,6 +159,7 @@
         <option value="$PROJECT_DIR$/controllers/upload.js" />
         <option value="$PROJECT_DIR$/controllers/files.js" />
         <option value="$PROJECT_DIR$/controllers/folders.js" />
+        <option value="$PROJECT_DIR$/server.js" />
       </list>
     </option>
   </component>
@@ -184,8 +182,6 @@
     <handled-path value="$PROJECT_DIR$/node_modules" />
   </component>
   <component name="ProjectFrameBounds" fullScreen="true">
-    <option name="x" value="317" />
-    <option name="y" value="1080" />
     <option name="width" value="1280" />
     <option name="height" value="800" />
   </component>
@@ -303,15 +299,15 @@
       <workItem from="1554734400980" duration="95000" />
       <workItem from="1554734519452" duration="14339000" />
       <workItem from="1554921135066" duration="63603000" />
-      <workItem from="1556200255584" duration="4270000" />
+      <workItem from="1556200255584" duration="4870000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="133934000" />
+    <option name="totallyTimeSpent" value="134534000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="317" y="1080" width="1280" height="800" extended-state="0" />
+    <frame x="0" y="0" width="1280" height="800" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2494043" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -571,13 +567,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/middlewares/router.js" />
-    <entry file="file://$PROJECT_DIR$/server.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="128">
-          <caret line="13" column="3" lean-forward="false" selection-start-line="13" selection-start-column="3" selection-end-line="13" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/.env">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
@@ -688,6 +677,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="135">
           <caret line="9" column="62" lean-forward="false" selection-start-line="9" selection-start-column="62" selection-end-line="9" selection-end-column="62" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="21" column="24" lean-forward="true" selection-start-line="21" selection-start-column="24" selection-end-line="21" selection-end-column="24" />
           <folding />
         </state>
       </provider>
